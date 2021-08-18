@@ -1,0 +1,10 @@
+br\com\projeto\utils\DataUtils.class
+br\com\projeto\action\AutorizacaoInterceptor.class
+br\com\projeto\model\Usuario.class
+br\com\projeto\action\UsuarioAction.class
+br\com\projeto\service\UsuarioService.class
+br\com\projeto\action\LoginAction.class
+br\com\projeto\dao\impl\UsuarioDAOImpl.class
+br\com\projeto\dao\UsuarioDAO.class
+br\com\projeto\service\impl\UsuarioServiceImpl.class
+br\com\projeto\utils\MoneyUtils.class

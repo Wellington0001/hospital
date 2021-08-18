@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.custom.i18n.resources" value="messages" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.multipart.maxSize" value="50000000" />
+
+	<package name="default" extends="struts-default">
+
+		<interceptors>
+			<interceptor name="autorizacao" class="br.com.projeto.action.AutorizacaoInterceptor"></interceptor>
+			<interceptor-stack name="controleAcesso">
+				<interceptor-ref name="autorizacao" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="erroGerenerico">erroGenerico.jsp</result>
+			<result name="usuarioNaoLogado">index.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping result="erroGerenerico"  exception="java.lang.Exception" />
+			<exception-mapping result="usuarioNaoLogado" exception="br.com.projeto.exception.UsuarioNaoLogadoException" />
+		</global-exception-mappings>
+
+		<!-- LOGIN -->
+		<action name="login" class="br.com.projeto.action.LoginAction">
+			<result name="error">/index.jsp</result>
+			<result name="success">/home.jsp</result>
+		</action>
+	
+		<action name="login_medico" method="loginMedico" class="br.com.projeto.action.LoginAction">
+			<result name="success">/login_medico.jsp</result>
+		</action>
+		
+		<action name="sair" method="sair" class="br.com.projeto.action.LoginAction">
+			<result name="success">/index.jsp</result>
+		</action>
+
+		<!-- MÉDICO -->
+		<action name="listar_medicos" method="listar" class="br.com.projeto.action.MedicoAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/medico_lista.jsp</result>
+		</action>
+		
+		<action name="cadastrar_medico" method="cadastrar" class="br.com.projeto.action.MedicoAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/medico_cadastro.jsp</result>
+		</action>
+		
+		<action name="salvar_medico" method="salvar" class="br.com.projeto.action.MedicoAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/medico_sucesso.jsp</result>
+		</action>
+		
+		<action name="editar_medico" method="editar" class="br.com.projeto.action.MedicoAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/medico_cadastro.jsp</result>
+		</action>
+		
+		<action name="excluir_medico" method="excluir" class="br.com.projeto.action.MedicoAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/medico_lista.jsp</result>
+		</action>
+		
+		<action name="pesquisar_medico" method="pesquisar" class="br.com.projeto.action.MedicoAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/medico_lista.jsp</result>
+		</action>
+		
+		<!-- ATENDENTE -->
+		<action name="listar_atendentes" method="listar" class="br.com.projeto.action.AtendenteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/atendente_lista.jsp</result>
+		</action>
+		
+		<action name="cadastrar_atendente" method="cadastrar" class="br.com.projeto.action.AtendenteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/atendente_cadastro.jsp</result>
+		</action>
+		
+		<action name="salvar_atendente" method="salvar" class="br.com.projeto.action.AtendenteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/atendente_sucesso.jsp</result>
+		</action>
+		
+		<action name="editar_atendente" method="editar" class="br.com.projeto.action.AtendenteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/atendente_cadastro.jsp</result>
+		</action>
+		
+		<action name="excluir_atendente" method="excluir" class="br.com.projeto.action.AtendenteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/atendente_lista.jsp</result>
+		</action>
+		
+		<action name="pesquisar_atendente" method="pesquisar" class="br.com.projeto.action.AtendenteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/atendente_lista.jsp</result>
+		</action>
+		
+		<!-- PACIENTE -->
+		<action name="listar_pacientes" method="listar" class="br.com.projeto.action.PacienteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/paciente_lista.jsp</result>
+		</action>
+		
+		<action name="cadastrar_paciente" method="cadastrar" class="br.com.projeto.action.PacienteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/paciente_cadastro.jsp</result>
+		</action>
+		
+		<action name="salvar_paciente" method="salvar" class="br.com.projeto.action.PacienteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/paciente_sucesso.jsp</result>
+		</action>
+		
+		<action name="editar_paciente" method="editar" class="br.com.projeto.action.PacienteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/paciente_cadastro.jsp</result>
+		</action>
+		
+		<action name="excluir_paciente" method="excluir" class="br.com.projeto.action.PacienteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/paciente_lista.jsp</result>
+		</action>
+		
+		<action name="pesquisar_paciente" method="pesquisar" class="br.com.projeto.action.PacienteAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/paciente_lista.jsp</result>
+		</action>
+		
+		<!-- CONSULTA -->
+		<action name="listar_consultas" method="listar" class="br.com.projeto.action.ConsultaAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/consulta_lista.jsp</result>
+		</action>
+		
+		<action name="cadastrar_consulta" method="cadastrar" class="br.com.projeto.action.ConsultaAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/consulta_cadastro.jsp</result>
+		</action>
+		
+		<action name="salvar_consulta" method="salvar" class="br.com.projeto.action.ConsultaAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/consulta_sucesso.jsp</result>
+		</action>
+		
+		<action name="editar_consulta" method="editar" class="br.com.projeto.action.ConsultaAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/consulta_cadastro.jsp</result>
+		</action>
+		
+		<action name="excluir_consulta" method="excluir" class="br.com.projeto.action.ConsultaAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/consulta_lista.jsp</result>
+		</action>
+		
+		<action name="pesquisar_consulta" method="pesquisar" class="br.com.projeto.action.ConsultaAction">
+			<interceptor-ref name="controleAcesso" />
+			<result name="success">/consulta_lista.jsp</result>
+		</action>
+
+	</package>
+</struts>

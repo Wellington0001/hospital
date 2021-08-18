@@ -1,0 +1,34 @@
+body {
+  background-image: linear-gradient(180deg, #eee, #fff 100px, #fff);
+}
+
+.container {
+  max-width: 960px;
+}
+
+.pricing-header {
+  max-width: 700px;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;  
+/*   padding: 15px; */
+}
+
+/* .form-signin .form-floating:focus-within { */
+/*   z-index: 2; */
+/* } */
+
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
